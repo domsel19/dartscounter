@@ -8,11 +8,14 @@ import javax.swing.*;
 
 import java.util.Date;
 
-public class App extends JFrame {
 
-public class App {
+
+public class App extends JFrame{
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        setSize(1000, 650);
+        setLocationRelativeTo(null);
+        setTitle("Dartscounter");
+        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/dartscounter.png"));
+        setIconImage(icon);
     }
-}
-}
+}}
