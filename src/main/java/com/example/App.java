@@ -1,21 +1,29 @@
-package com.dartscounter;
+package com.example;
 
-import java.sql.DriverManager;
-import java.sql.Conncetion;
-import java.awt.*;
-import java.awt.event.*;
+import com.example.db.PlayerRepository;
+import com.example.db.Schema;
+import com.example.ui.MainPanel;
+
 import javax.swing.*;
+import java.awt.*;
 
-import java.util.Date;
+public class App extends JFrame {
 
+    public App(PlayerRepository players) {
+        super("Dartscounter");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-
-public class App extends JFrame{
-    public static void main(String[] args) {
-        setSize(1000, 650);
+        setContentPane(new MainPanel(players));
+        pack();
         setLocationRelativeTo(null);
-        setTitle("Dartscounter");
-        Image icon = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/dartscounter.png"));
-        setIconImage(icon);
+        setMinimumSize(new Dimension(1000, 650));
     }
-}}
+
+    public static void main(String[] args) {
+        com.example.db.Schema.init();
+        PlayerRepository players = new PlayerRepository();
+
+        SwingUtilities.invokeLater(() -> new App(players).setVisible(true));
+    }
+
+}
